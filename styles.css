@@ -1,0 +1,19 @@
+.arena {
+    border: solid .2em rgb(0, 0, 0);
+    transition: .9s;
+    transition-timing-function: ease-in-out;
+    margin-top: 5vh;
+}
+.arena.chomp {
+    border: solid .2em rgb(0, 200, 0);
+    transition: .05s;
+    transition-timing-function: ease-in-out);
+}
+.arena.collide {
+    border: solid .2em rgb(200, 0, 0);
+    transition: .05s;
+    transition-timing-function: ease-in-out);
+}
+body {
+    text-align: center;
+}
