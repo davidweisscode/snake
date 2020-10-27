@@ -35,7 +35,8 @@ class Player {
         this.controlLock = false;
         this.hist.push({
             x: this.getPos().x + this.dir.x,
-            y: this.getPos().y + this.dir.y});
+            y: this.getPos().y + this.dir.y
+        });
     }
 
     collide() {
@@ -86,7 +87,7 @@ class Player {
         this.dir = {x: 1, y: 0};
         if (this.size > this.highscore) {
             this.highscore = this.size;
-            document.getElementById("highscore").innerHTML = "Highscore: " + this.highscore;
+            this.snake.playerElement.querySelector(".highscore").innerHTML = "Highscore: " + this.highscore;
         }
         this.size = 3;
         this.moveInterval = 500;

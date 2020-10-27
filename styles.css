@@ -1,5 +1,13 @@
+body {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-family: sans-serif;
+}
 .arena {
-    border: solid .2em rgb(0, 0, 0);
+    border: solid .2em #fff;
     transition: .9s;
     transition-timing-function: ease-in-out;
     margin-top: 5vh;
@@ -14,6 +22,6 @@
     transition: .05s;
     transition-timing-function: ease-in-out);
 }
-body {
-    text-align: center;
+.highscore {
+    margin-top: 1rem;
 }

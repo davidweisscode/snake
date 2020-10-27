@@ -1,7 +1,8 @@
 class Snake {
-    constructor(canvas) {
-        this.canvas = canvas;
-        this.context = canvas.getContext("2d");
+    constructor(playerElement) {
+        this.playerElement = playerElement;
+        this.canvas = playerElement.querySelector("canvas");
+        this.context = this.canvas.getContext("2d");
         this.context.scale(20, 20);
 
         this.player = new Player(this);
@@ -19,10 +20,11 @@ class Snake {
             this.draw();
             requestAnimationFrame(this._update);
         };
+        this._update();
     }
 
     draw() {
-        this.context.fillStyle = "#555";
+        this.context.fillStyle = "#111";
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.context.fillStyle = "green";
@@ -35,8 +37,8 @@ class Snake {
     }
 
     feedback(event) {
-        document.getElementById("arena").classList.add(event);//canvas
-        setTimeout(() => document.getElementById("arena").classList.remove(event), 50);
+        this.canvas.classList.add(event);
+        setTimeout(() => this.canvas.classList.remove(event), 50);
     }
 
 }
