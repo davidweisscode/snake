@@ -4,16 +4,17 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-        <div class="player">
-            <canvas class="arena" class="arena" width="400" height="400"></canvas>
-            <div class="highscore">Highscore: 0</div>
-        </div>
-        <div class="player">
-            <canvas class="arena" class="arena" width="400" height="400"></canvas>
-            <div class="highscore">Highscore: 0</div>
-        </div>
-        <script src="player.js"></script>
-        <script src="snake.js"></script>
-        <script src="main.js"></script>
+        <template id="player-template">
+            <div class="player">
+                <canvas class="snake" width="400" height="400"></canvas>
+                <div class="highscore">Highscore: 0</div>
+            </div>
+        </template>
+
+        <script src="client/snake-manager.js"></script>
+        <script src="client/connection-manager.js"></script>
+        <script src="client/player.js"></script>
+        <script src="client/snake.js"></script>
+        <script src="client/main.js"></script>
     </body>
     </html>

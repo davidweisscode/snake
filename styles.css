@@ -6,18 +6,31 @@ body {
     color: #fff;
     font-family: sans-serif;
 }
-.arena {
-    border: solid .2em #fff;
+canvas {
+    border: solid .2em #505050;
     transition: .9s;
     transition-timing-function: ease-in-out;
-    margin-top: 5vh;
+    margin-top: 1rem;
 }
-.arena.chomp {
+.player.local canvas {
+    border: solid .2em #fff;
+}
+canvas.chomp {
     border: solid .2em rgb(0, 200, 0);
     transition: .05s;
     transition-timing-function: ease-in-out);
 }
-.arena.collide {
+canvas.collide {
+    border: solid .2em rgb(200, 0, 0);
+    transition: .05s;
+    transition-timing-function: ease-in-out);
+}
+.player.local canvas.chomp {
+    border: solid .2em rgb(0, 200, 0);
+    transition: .05s;
+    transition-timing-function: ease-in-out);
+}
+.player.local canvas.collide {
     border: solid .2em rgb(200, 0, 0);
     transition: .05s;
     transition-timing-function: ease-in-out);

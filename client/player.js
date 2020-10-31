@@ -49,7 +49,6 @@ class Player {
 
         // Apple
         if (this.getPos().x === this.snake.apple.x && this.getPos().y === this.snake.apple.y) {
-            console.log("Chomp")
             this.snake.feedback("chomp");
             this.size += 1;
             this.moveInterval -= 50 * (this.moveInterval / 500);
@@ -58,9 +57,8 @@ class Player {
 
         // Self
         if (this.getBody().filter(ele => ele.x === this.getPos().x && ele.y === this.getPos().y).length > 1) {
-            console.log("Touchy");
-                this.snake.feedback("collide");
-                this.reset();
+            this.snake.feedback("collide");
+            this.reset();
         }
     }
 
@@ -69,7 +67,6 @@ class Player {
         let _y = Math.floor(Math.random() * 20);
 
         while (this.getBody().filter(bodypart => bodypart.x === _x && bodypart.y === _y).length > 0) {
-            console.log("try new apple pos");
             _x = Math.floor(Math.random() * 20);
             _y = Math.floor(Math.random() * 20);
         }
@@ -78,7 +75,6 @@ class Player {
     }
 
     reset() {
-        console.log("Reset")
         this.hist = [
             {x: 5, y: 5},
             {x: 6, y: 5},

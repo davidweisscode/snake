@@ -1,30 +1,28 @@
-const snakes = [];
-const playerElements = document.querySelectorAll(".player");
-[...playerElements].forEach(playerElement => {
-    const snake = new Snake(playerElement);
-    snakes.push(snake);
-});
+const snakeManager = new SnakeManager(document);
+const localSnake = snakeManager.createPlayer();
+localSnake.playerElement.classList.add("local");
+
 
 document.addEventListener("keydown", event => {
     [
         ["w", "s", "d", "a"],
         ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"],
-    ].forEach((keyset, index) => {
-        const player = snakes[index].player;
+    ].forEach((keys, index) => {
+        const player = localSnake.player;
         if (player.controlLock) { return; }
-        if (event.key === keyset[0]) {
+        if (event.key === keys[0]) {
             if (player.dir.y !== 1) {
                 player.dir = {x: 0, y: -1};
             }
-        } else if (event.key === keyset[1]) {
+        } else if (event.key === keys[1]) {
             if (player.dir.y !== -1) {
                 player.dir = {x: 0, y: 1};
             }
-        } else if (event.key === keyset[2]) {
+        } else if (event.key === keys[2]) {
             if (player.dir.x !== -1) {
                 player.dir = {x: 1, y: 0};
             }
-        } else if (event.key === keyset[3]) {
+        } else if (event.key === keys[3]) {
             if (player.dir.x !== 1) {
                 player.dir = {x: -1, y: 0};
             }

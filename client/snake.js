@@ -7,10 +7,6 @@ class Snake {
 
         this.player = new Player(this);
 
-        this.deltaTime = 0;
-        this.lastTime = 0;
-        this.accumulator = 0;
-
         this.apple = {x: 9, y: 5};
 
         let lastTime = 0;
