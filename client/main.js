@@ -2,6 +2,8 @@ const snakeManager = new SnakeManager(document);
 const localSnake = snakeManager.createPlayer();
 localSnake.playerElement.classList.add("local");
 
+const connectionManager = new ConnectionManager(snakeManager);
+connectionManager.connect("ws://localhost:9000");
 
 document.addEventListener("keydown", event => {
     [
