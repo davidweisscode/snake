@@ -3,6 +3,19 @@ class Client {
         this.conn = conn;
         this.id = id;
         this.session = null;
+        // this.state = null; // Not included
+    }
+
+    broadcast(data) {
+        if (!this.session) {
+            throw new Error("Can not broadcast without session");
+        }
+
+        data.clientId = this.id;
+
+        [...this.session.clients]
+            .filter(client => client !== this)
+            .forEach(client => client.send(data));
     }
 
     send(data) {
@@ -12,7 +25,7 @@ class Client {
             if(err) {
                 console.error("Message failed", err, msg);
             }
-        })
+        });
     }
 }
 

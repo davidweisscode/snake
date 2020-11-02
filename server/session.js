@@ -11,6 +11,7 @@ class Session {
         this.clients.add(client);
         client.session = this;
     }
+
     leave(client) {
         if(client.session !== this) {
             throw new Error("Client not in session");

@@ -42,10 +42,15 @@ function broadcastSession(session) {
             type: "session-broadcast",
             peers: {
                 you: client.id,
-                clients: clients.map(client => client.id),
+                clients: clients.map(client => {
+                    return {
+                        id: client.id,
+                        state: client.state,
+                    }
+                }),
             },
         });
-    })
+    });
 }
 
 server.on("connection", conn => {
@@ -56,22 +61,26 @@ server.on("connection", conn => {
         console.log("Message received", msg);
         const data = JSON.parse(msg);
 
-        if(data.type === "create-session") {
+        if (data.type === "create-session") {
             const session = createSession();
             session.join(client);
-            sessions.set(session.id, session);
+            // sessions.set(session.id, session); // Not included
+            client.state = data.state;
             client.send({
                 type: "session-created",
                 id: session.id,
             });
-        } else if(data.type === "join-session") {
+        } else if (data.type === "join-session") {
             const session = getSession(data.id) || createSession(data.id);
             session.join(client);
 
+            client.state = data.state;
             broadcastSession(session);
+        } else if (data.type === "state-update") {
+            const [key, value] = data.state;
+            client.state[data.fragment][key] = value;
+            client.broadcast(data);
         }
-
-        console.log("Sessions", sessions);
     });
 
     conn.on("close", () => {
@@ -85,5 +94,6 @@ server.on("connection", conn => {
         }
 
         broadcastSession(session);
+        console.log(sessions)
     });
 });

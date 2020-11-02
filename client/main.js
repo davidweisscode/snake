@@ -1,16 +1,18 @@
 const snakeManager = new SnakeManager(document);
-const localSnake = snakeManager.createPlayer();
-localSnake.playerElement.classList.add("local");
+const snakeLocal = snakeManager.createPlayer();
+snakeLocal.playerElement.classList.add("local");
+snakeLocal.run();
 
 const connectionManager = new ConnectionManager(snakeManager);
 connectionManager.connect("ws://localhost:9000");
+// connectionManager.connect("ws://" + window.location.hostname + ":9000");
 
-document.addEventListener("keydown", event => {
+const keyListener = (event) => {
     [
         ["w", "s", "d", "a"],
-        ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"],
+        // ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"],
     ].forEach((keys, index) => {
-        const player = localSnake.player;
+        const player = snakeLocal.player;
         if (player.controlLock) { return; }
         if (event.key === keys[0]) {
             if (player.dir.y !== 1) {
@@ -31,4 +33,6 @@ document.addEventListener("keydown", event => {
         }
         player.controlLock = true;
     });
-});
+};
+
+document.addEventListener("keydown", keyListener);
